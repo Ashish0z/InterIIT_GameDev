@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class arrow_dir : MonoBehaviour
-{   
+{
     public Transform bone;
     GameObject player;
     // Start is called before the first frame update
@@ -21,6 +21,6 @@ public class arrow_dir : MonoBehaviour
         playerPos.z = 0;
         //mousepos.z=0;
         //Debug.Log(mousepos);
-        bone.position=playerPos;
+        bone.position = playerPos;
     }
 }

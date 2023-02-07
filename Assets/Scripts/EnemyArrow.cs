@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyArrow : MonoBehaviour
 {
     public float speed;
+    public float damage;
 
     private Transform player;
     private Vector2 target;
@@ -34,7 +35,7 @@ public class EnemyArrow : MonoBehaviour
         {
             //Arjuna.GetComponent<Arjun_health>().health -= 10;
             //Debug.Log("Player Hit!");
-            Arjuna.GetComponent<PlayerHealth>().DecreaseHealth(5f);
+            Arjuna.GetComponent<PlayerHealth>().DecreaseHealth(damage);
             Destroy(gameObject, 0.2f);
 
         }
