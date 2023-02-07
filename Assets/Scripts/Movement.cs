@@ -6,7 +6,7 @@ public class Movement : MonoBehaviour
 {
 
     [SerializeField] float speed;
-    float Playerhealth = 100f;
+
     //[SerializeField] Transform playerLocation;
     
     // Start is called before the first frame update

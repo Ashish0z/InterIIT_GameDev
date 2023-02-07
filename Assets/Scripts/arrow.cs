@@ -10,8 +10,6 @@ public class arrow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-            
         rb = GetComponent<Rigidbody2D>(); 
     }
 
@@ -31,9 +29,15 @@ public class arrow : MonoBehaviour
         rb.velocity = Vector2.zero;
         rb.isKinematic = true;
 
-        if (collision2D.gameObject.tag == "Ground") 
+        if (collision2D.gameObject.tag == "Ground" || collision2D.gameObject.tag == "Player") 
         {
            
+            Destroy(gameObject, 0.2f);
+ 
+        }if (collision2D.gameObject.tag == "Enemy") 
+        {
+            collision2D.gameObject.GetComponent<Enemy>().enemyHealth -= 10f;
+            Debug.Log("Enemy Hit!");
             Destroy(gameObject, 0.2f);
  
         }
