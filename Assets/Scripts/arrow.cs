@@ -36,7 +36,14 @@ public class arrow : MonoBehaviour
  
         }if (collision2D.gameObject.tag == "Enemy") 
         {
-            collision2D.gameObject.GetComponent<Enemy>().enemyHealth -= 10f;
+            if (collision2D.gameObject.GetComponent<Sword_Enemy>() != null)
+            {
+                collision2D.gameObject.GetComponent<Sword_Enemy>().enemyHealth -= 10f;
+            }
+            if (collision2D.gameObject.GetComponent<Enemy>() != null)
+            {
+                collision2D.gameObject.GetComponent<Enemy>().enemyHealth -= 10f;
+            }
             Debug.Log("Enemy Hit!");
             Destroy(gameObject, 0.2f);
  

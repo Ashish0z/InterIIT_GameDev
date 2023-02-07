@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
             enemyDead = true;
             Destroy(gameObject);
         }
-        if (!enemyDead || !Arjuna.GetComponent<PlayerHealth>().playerDead)
+        if (!enemyDead && Arjuna.GetComponent<PlayerHealth>() != null)
         {
             EnemyAI();
         }
@@ -54,6 +54,7 @@ public class Enemy : MonoBehaviour
         }
         else if (Vector2.Distance(transform.position, player.position) < retreatDistance)
         {
+            anim.SetBool("isWalking", true);
             transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
         }
         if (timeBtwShots <= 0)

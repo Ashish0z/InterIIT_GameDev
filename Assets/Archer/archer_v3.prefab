@@ -235,9 +235,12 @@ GameObject:
   - component: {fileID: 1934509906338684750}
   - component: {fileID: 1934509906338684737}
   - component: {fileID: 1934509906338684739}
+  - component: {fileID: 1583785310}
+  - component: {fileID: 1583785309}
+  - component: {fileID: 1583785308}
   m_Layer: 0
   m_Name: archer_v3
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -251,7 +254,7 @@ Transform:
   m_GameObject: {fileID: 1592492317276822076}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -5.4248, y: -3.11, z: -0.26548}
-  m_LocalScale: {x: -0.525, y: -0.525, z: -0.525}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7053392025857118232}
@@ -369,6 +372,62 @@ MonoBehaviour:
   - {fileID: 9126439115222561040}
   - {fileID: 4138164947641386347}
   - {fileID: 3861865035384791219}
+--- !u!50 &1583785310
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592492317276822076}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!70 &1583785309
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592492317276822076}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.12763214, y: 2.3799343}
+  m_Size: {x: 1.0105324, y: 4.6366997}
+  m_Direction: 0
+--- !u!114 &1583785308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592492317276822076}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85e7445528f062f44a10f30381a546f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  stoppingDistance: 10
+  retreatDistance: 2
+  enemyDead: 0
+  startTimeBtwShots: 2
+  enemyHealth: 20
+  projectile: {fileID: 7524409113723450730, guid: d13bbce05439a7043936280e7f30d0e2, type: 3}
 --- !u!1 &1934509905850499194
 GameObject:
   m_ObjectHideFlags: 0

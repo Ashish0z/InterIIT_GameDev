@@ -17,10 +17,13 @@ public class arrow_dir : MonoBehaviour
     void Update()
     {
         //Vector3 mousepos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 playerPos = player.transform.position;
-        playerPos.z = 0;
-        //mousepos.z=0;
-        //Debug.Log(mousepos);
-        bone.position = playerPos;
+        if (player != null)
+        {
+            Vector3 playerPos = player.transform.position;
+            playerPos.z = 0;
+            //mousepos.z=0;
+            //Debug.Log(mousepos);
+            bone.position = playerPos;
+        }
     }
 }
