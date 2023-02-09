@@ -11,16 +11,19 @@ public class BowShoot : MonoBehaviour
     [SerializeField] float PowerFixator;
     float power = 0;
     Vector2 direction;
+    public Transform player;
+    public float startTimeBtwShots;
 
 
     public GameObject point;
     GameObject[] Points;
     public int NumberofPoints;
     public float SpaceBetweenPoints;
-
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
         Points = new GameObject[NumberofPoints];
         for (int i = 0; i < NumberofPoints; i++)
         {
@@ -46,14 +49,18 @@ public class BowShoot : MonoBehaviour
         {
             Shoot();
             power = 0;
-            
+
         }
     }
 
     void Shoot()
     {
         GameObject newArrow = Instantiate(Arrow, shootPoint.position, shootPoint.rotation);
-        newArrow.GetComponent<Rigidbody2D>().velocity = transform.right * LaunchForce;
+        float chariotSpeedx = Input.GetAxis("Horizontal") * 10;
+        Vector3 chariotSpeed = new Vector3(chariotSpeedx, 0f, 0f);
+
+        newArrow.GetComponent<Rigidbody2D>().velocity = transform.right * LaunchForce + chariotSpeed;
+        //newArrow.GetComponent<Rigidbody2D>().velocity = transform.right * LaunchForce;
     }
     void Shooting()
     {
@@ -68,13 +75,16 @@ public class BowShoot : MonoBehaviour
         }
         if (power < 0) { power = 0; }
         if (power > 10) { power = 10; }
-       
+
         LaunchForce = power;
     }
 
     Vector2 PointPosition(float t)
     {
-        Vector2 position = (Vector2)shootPoint.position + (direction.normalized*LaunchForce*t) + 0.5f*Physics2D.gravity*t*t ;
+        float chariotSpeedx = Input.GetAxis("Horizontal") * 10 * Time.deltaTime;
+        Vector2 chariotSpeed = new Vector2(chariotSpeedx, 0f);
+        Vector2 position = (Vector2)shootPoint.position + (direction.normalized * LaunchForce + chariotSpeed) * t + 0.5f * Physics2D.gravity * t * t;
+        //Vector2 position = (Vector2)shootPoint.position + (direction.normalized*LaunchForce)*t + 0.5f*Physics2D.gravity*t*t ;
         return position;
     }
 }

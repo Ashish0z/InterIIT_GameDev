@@ -25,16 +25,23 @@ public class arrow : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision2D)
     {
-        hasHit = true;
-        rb.velocity = Vector2.zero;
-        rb.isKinematic = true;
-
-        if (collision2D.gameObject.tag == "Ground" || collision2D.gameObject.tag == "Player") 
+        if (collision2D.gameObject.tag != "Player")
         {
-           
+            hasHit = true;
+            rb.velocity = Vector2.zero;
+            rb.isKinematic = true;
+
+        }
+        if(collision2D.gameObject.tag == "Player")
+        {
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision2D.gameObject.GetComponent<Collider2D>());
+        }
+        if (collision2D.gameObject.tag == "Ground") 
+        {
             Destroy(gameObject, 0.2f);
- 
-        }if (collision2D.gameObject.tag == "Enemy") 
+
+        }
+        if (collision2D.gameObject.tag == "Enemy") 
         {
             if (collision2D.gameObject.GetComponent<Sword_Enemy>() != null)
             {

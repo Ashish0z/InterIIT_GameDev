@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-
     [SerializeField] float speed;
+    [SerializeField] Animator horseAnim;
 
     //[SerializeField] Transform playerLocation;
     
@@ -26,6 +26,14 @@ public class Movement : MonoBehaviour
     {
         float moveAmount = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
         transform.Translate(moveAmount, 0, 0);
+        if(moveAmount != 0)
+        {
+            horseAnim.SetBool("isMoving", true);
+        }
+        else
+        {
+            horseAnim.SetBool("isMoving", false);
+        }
     }
     
 }
