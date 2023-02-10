@@ -324,8 +324,10 @@ MonoBehaviour:
   stoppingDistance: 5
   retreatDistance: 4
   bossDead: 0
+  damage: 0
   bossHealth: 20
   projectile: {fileID: 0}
+  anim: {fileID: 0}
 --- !u!114 &3536917228684724534
 MonoBehaviour:
   m_ObjectHideFlags: 0
