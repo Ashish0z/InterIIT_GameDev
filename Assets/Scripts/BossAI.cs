@@ -8,19 +8,18 @@ public class BossAI : MonoBehaviour
     public float stoppingDistance;
     public float retreatDistance;
     public bool bossDead = false;
-    //private float timeBtwShots;
-    //public float startTimeBtwShots;
+    public float damage;
     public float bossHealth = 20f;
 
     public GameObject projectile;
     private Transform player;
     private GameObject Arjuna;
-    Animator anim;
+    public Animator anim;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         Arjuna = GameObject.FindGameObjectWithTag("Player");
-        anim = GetComponent<Animator>();
+        //anim = GetComponentInChildren<Animator>();
         //timeBtwShots = startTimeBtwShots;
     }
 
@@ -44,17 +43,17 @@ public class BossAI : MonoBehaviour
     {
         if (Vector2.Distance(transform.position, player.position) > stoppingDistance)
         {
-            //anim.SetBool("isWalking", true);
+            anim.SetBool("isMoving", true);
             transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
         else if (Vector2.Distance(transform.position, player.position) < stoppingDistance && Vector2.Distance(transform.position, player.position) > retreatDistance)
         {
-            //anim.SetBool("isWalking", false);
+            anim.SetBool("isMoving", false);
             transform.position = this.transform.position;
         }
         else if (Vector2.Distance(transform.position, player.position) < retreatDistance)
         {
-            //anim.SetBool("isWalking", true);
+            anim.SetBool("isMoving", true);
             transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
         }
         //if (timeBtwShots <= 0)

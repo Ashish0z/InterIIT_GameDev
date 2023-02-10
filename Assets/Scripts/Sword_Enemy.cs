@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Sword_Enemy : MonoBehaviour
 {
+    spawnEnemy SpawnEnemy;
     public float speed;
     public float stoppingDistance;
     public bool enemyDead = false;
     public float attackRate = 0.5f;
     float nextAttackTime = 0f;
     public float enemyHealth = 20f;
-
+    public float damage;
     public GameObject projectile;
     private Transform player;
     private GameObject Arjuna;
@@ -20,6 +21,7 @@ public class Sword_Enemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         Arjuna = GameObject.FindGameObjectWithTag("Player");
         anim = GetComponent<Animator>();
+        SpawnEnemy = GameObject.FindGameObjectWithTag("spawn").GetComponent<spawnEnemy>();
         //timeBtwAttacks = startTimeBtwAttacks;
     }
 
@@ -29,9 +31,10 @@ public class Sword_Enemy : MonoBehaviour
         if(enemyHealth <= 0f)
         {
             enemyDead = true;
+            SpawnEnemy.swordguykillled++;
             Destroy(gameObject);
         }
-        if (!enemyDead && Arjuna.GetComponent<PlayerHealth>() != null)
+        if (!enemyDead && Arjuna.GetComponent<PlayerHealth>().health > 0 && !Arjuna.GetComponent<PlayerHealth>().playerDead)
         {
             EnemyAI();
         }
@@ -55,6 +58,8 @@ public class Sword_Enemy : MonoBehaviour
                 anim.SetBool("isAttacking", true);
                 nextAttackTime = Time.time + 1 / attackRate;
                 Debug.Log("Player Hit!");
+                Arjuna.GetComponent<PlayerHealth>().DecreaseHealth(damage);
+
             }
             transform.position = this.transform.position;
         }

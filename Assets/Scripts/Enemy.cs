@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    spawnEnemy SpawnEnemy;
+    public float arrowRange;
     public float speed;
     public float stoppingDistance;
     public float retreatDistance;
@@ -22,6 +24,7 @@ public class Enemy : MonoBehaviour
         Arjuna = GameObject.FindGameObjectWithTag("Player");
         anim = GetComponent<Animator>();
         timeBtwShots = startTimeBtwShots;
+        SpawnEnemy = GameObject.FindGameObjectWithTag("spawn").GetComponent<spawnEnemy>();
     }
 
     // Update is called once per frame
@@ -30,9 +33,10 @@ public class Enemy : MonoBehaviour
         if(enemyHealth <= 0f)
         {
             enemyDead = true;
+            SpawnEnemy.noOfArcherKilled++;
             Destroy(gameObject);
         }
-        if (!enemyDead && Arjuna.GetComponent<PlayerHealth>() != null)
+        if (!enemyDead && Arjuna.GetComponent<PlayerHealth>().health > 0 && !Arjuna.GetComponent<PlayerHealth>().playerDead)
         {
             EnemyAI();
         }
@@ -59,9 +63,12 @@ public class Enemy : MonoBehaviour
         }
         if (timeBtwShots <= 0)
         {
-            Vector2 arrow_start_pos = new Vector2(transform.position.x, transform.position.y + 0.66f);
-            Instantiate(projectile, arrow_start_pos, Quaternion.identity);
-            timeBtwShots = startTimeBtwShots;
+            if (Vector2.Distance(transform.position, player.position) <= arrowRange)
+            {
+                Vector2 arrow_start_pos = new Vector2(transform.position.x, transform.position.y + 0.66f);
+                Instantiate(projectile, arrow_start_pos, Quaternion.identity);
+                timeBtwShots = startTimeBtwShots;
+            }
         }
         else
         {

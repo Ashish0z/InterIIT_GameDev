@@ -421,8 +421,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e7445528f062f44a10f30381a546f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrowRange: 10
   speed: 5
-  stoppingDistance: 10
+  stoppingDistance: 7
   retreatDistance: 2
   enemyDead: 0
   startTimeBtwShots: 2
