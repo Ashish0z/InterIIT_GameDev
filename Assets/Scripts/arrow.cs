@@ -7,7 +7,13 @@ public class arrow : MonoBehaviour
     
     Rigidbody2D rb;
     public bool hasHit = false;
+    public AudioSource arrowHitSound;
+    public AudioSource arrowReleaseSound;
     // Start is called before the first frame update
+    private void Awake()
+    {
+        arrowReleaseSound.Play();
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); 
@@ -51,6 +57,11 @@ public class arrow : MonoBehaviour
             {
                 collision2D.gameObject.GetComponent<Enemy>().enemyHealth -= 10f;
             }
+            if (collision2D.gameObject.GetComponent<BossAI>() != null)
+            {
+                collision2D.gameObject.GetComponent<BossAI>().bossHealth -= 10f;
+            }
+            arrowHitSound.Play();
             Debug.Log("Enemy Hit!");
             Destroy(gameObject, 0.2f);
  

@@ -13,6 +13,7 @@ public class BowShoot : MonoBehaviour
     Vector2 direction;
     public Transform player;
     public float startTimeBtwShots;
+    public int NoofShotsFired=0;
 
 
     public GameObject point;
@@ -60,6 +61,7 @@ public class BowShoot : MonoBehaviour
         Vector3 chariotSpeed = new Vector3(chariotSpeedx, 0f, 0f);
 
         newArrow.GetComponent<Rigidbody2D>().velocity = transform.right * LaunchForce + chariotSpeed;
+        NoofShotsFired++;
         //newArrow.GetComponent<Rigidbody2D>().velocity = transform.right * LaunchForce;
     }
     void Shooting()
