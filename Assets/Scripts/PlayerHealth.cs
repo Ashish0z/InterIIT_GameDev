@@ -37,7 +37,7 @@ public class PlayerHealth : MonoBehaviour
         accuracy = (float)N / (float)D;
         
 
-        score = Mathf.RoundToInt(10*Mathf.Exp(accuracy + (health / 100)));
+        score = Mathf.RoundToInt(10*Mathf.Exp(accuracy));
         if (health <= 0)
         {
             Debug.Log("Player Dead!!!");

@@ -30,6 +30,7 @@ public class BossAI : MonoBehaviour
         {
             bossDead = true;
             Destroy(gameObject);
+            Application.Quit();
         }
         if (!bossDead && Arjuna.GetComponent<PlayerHealth>() != null)
         {

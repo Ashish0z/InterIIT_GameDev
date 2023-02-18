@@ -32,6 +32,11 @@ public class Scoreboard : MonoBehaviour
             SceneManager.LoadScene(level+1);
             i++;
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+        
     }
 
     public void Setup(float score)
